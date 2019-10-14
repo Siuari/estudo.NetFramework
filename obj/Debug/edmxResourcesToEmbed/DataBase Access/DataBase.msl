@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CrudNutelaModelStoreContainer" CdmEntityContainer="NutelaContext">
+    <EntitySetMapping Name="Clientes">
+      <EntityTypeMapping TypeName="CrudNutelaModel.Cliente">
+        <MappingFragment StoreEntitySet="Clientes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Documento" ColumnName="Documento" />
+          <ScalarProperty Name="Endereco" ColumnName="Endereco" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Telefones">
+      <EntityTypeMapping TypeName="CrudNutelaModel.Telefone">
+        <MappingFragment StoreEntitySet="Telefones">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+          <ScalarProperty Name="Numero" ColumnName="Numero" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CrudNutelaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Clientes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="nvarchar(max)" />
+    <Property Name="Documento" Type="nvarchar(max)" />
+    <Property Name="Endereco" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Telefones">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClienteId" Type="int" Nullable="false" />
+    <Property Name="Numero" Type="nvarchar(max)" />
+  </EntityType>
+  <Association Name="FK_Telefones_Clientes_ClienteId">
+    <End Role="Clientes" Type="Self.Clientes" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Telefones" Type="Self.Telefones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clientes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Telefones">
+        <PropertyRef Name="ClienteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CrudNutelaModelStoreContainer">
+    <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Telefones" EntityType="Self.Telefones" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Telefones_Clientes_ClienteId" Association="Self.FK_Telefones_Clientes_ClienteId">
+      <End Role="Clientes" EntitySet="Clientes" />
+      <End Role="Telefones" EntitySet="Telefones" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
